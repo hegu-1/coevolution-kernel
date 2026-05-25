@@ -78,7 +78,7 @@ A **provenance-enforced kernel** sits between:
 | **Reflexion** (Shinn et al) | Self-correction via reflection | Single session; no provenance; silent prompt mutation |
 | **MemGPT / Letta / mem0** | Long-term agent memory layers | Focus on retrieval, not provenance; no calibration concept |
 | **Voyager** (Wang et al) | Skill library + auto skill generation | Optimizes for capability not judgment; no schema protection |
-| **Anthropic Skills** | `SKILL.md` plug-in format for Claude | Skills independent; no cognition kernel meta-layer above them |
+| **Anthropic Skills** (`anthropics/skills` + [agentskills.io spec](https://agentskills.io/specification)) | `SKILL.md` plug-in format for Claude; horizontal task-completion patterns (PDF / docx / frontend-design / etc.) | Spec defines *what a skill is*, not *when to invoke which / how to detect drift / how to preserve judgment*. The cognitive-meta layer above them is unaddressed |
 | **Sakana Transformer²** | Self-adaptive LLM via weight modulation | Weight-level; no provenance; not user-tunable |
 
 The pattern: each component above is necessary but not sufficient. They all assume the user is either absent (autonomous agent settings) or static (training-time alignment). This thesis assumes the user is **present, evolving, and central** — and the kernel exists to protect that user's judgment integrity while AI capability evolves alongside.
@@ -93,8 +93,9 @@ The pattern: each component above is necessary but not sufficient. They all assu
 | **Memory drift surfaces in mainstream usage** — users of Claude Memory / GPT Memory accumulate 1+ year of context, drift becomes visible | **Q3-Q4 2026** |
 | **Reasoning models exhibit path-quality degradation** (o1 / Claude Extended Thinking / Gemini DeepThink) — longer thinking, more drift | already happening |
 | **Creator tooling pushback** — Notion AI / Tana / Reflect users notice their "voice" being homogenized | already starting |
+| **Agent Skills standardization** — Anthropic publishes spec + reference repo; prior art window for the *cognitive-meta layer above* horizontal skills narrows fast | **2026-Q2 (active now)** |
 
-Three of these are 2026 events. The window for establishing reference vocabulary is small.
+Four of these are 2026 events, one is already active. The window for establishing reference vocabulary is small.
 
 ---
 
@@ -151,6 +152,16 @@ A working prototype of the cognition-skill side of this kernel is at [`claude-co
 - `nepm-orchestrator` — execution planner
 
 The current repo (kernel) extends those principles to the broader agent stack.
+
+### Relation to Anthropic's Agent Skills spec
+
+Each `SKILL.md` in the reference implementation validates 100% against the official [Agent Skills spec](https://agentskills.io/specification) — same `name` / `description` / `metadata` / `compatibility` / `license` schema as `anthropics/skills`.
+
+The differentiation is **layer**, not spec:
+- `anthropics/skills` operates on **task-completion** — *how to do X* (process PDFs, generate UI, send Slack messages).
+- This kernel + `claude-cognition-skills` operate on **cognitive-meta** — *how to read what kind of movement is happening* before deciding what task to invoke.
+
+The two stack rather than compete. Task skills are the *what*; the cognition kernel is the *how-do-I-know-I'm-on-the-right-path*.
 
 ---
 
