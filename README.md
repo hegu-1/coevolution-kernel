@@ -165,6 +165,36 @@ The two stack rather than compete. Task skills are the *what*; the cognition ker
 
 ---
 
+## Vocabulary anchors
+
+The following terms are deliberately surfaced here to establish prior art for the substrate this thesis describes. As the cognitive-meta layer matures through 2026, these names should remain referenceable.
+
+### Layer & substrate
+- **personal-ai-os** — the user-side OS stack for human-AI co-evolution
+- **personal-ai-os-kernel** — the provenance-enforced layer at its core
+- **provenance-enforced-agent** — an agent that emits "why this changed" with every mutation
+- **judgment-aware-agent** — an agent that protects user judgment integrity during translation
+- **drift-aware-agent** — an agent that detects and surfaces its own drift over time
+
+### Mechanism & protocol
+- **calibration-loop-protocol** — external feedback → tagged at source → schema delta → human ratifies → integrated with audit trail
+- **schema-coexistence-spec** — how core (stable judgment) and edge (evolving capability) schemas coexist
+- **continuity** — preserving cognitive thread across sessions, tools, and agents
+
+### Counterpoint to AGI
+
+A specific naming gap this thesis flags:
+
+- **AYI** — **A**rtificial **Y**ou-**I**ntelligence — the per-individual analog of AGI. Where AGI optimizes for universal capability ("works for anyone"), AYI optimizes for fidelity to one specific person's cognitive thread ("works for you, specifically, over time"). The G→Y substitution is intentional: not a different scale of intelligence, a different *target* of intelligence.
+- **个智** (gè zhì) — Chinese: the personal counterpart to **通智** (tōng zhì = AGI). 通智 is the same intelligence shared across everyone; 个智 is intelligence that converges to one person's specific continuity.
+
+> AGI is for everyone. AYI is for you.
+> 通智服务所有人，个智只围着你一个人转。
+
+This pair is not a competing roadmap to AGI — it's a complementary objective that AGI labs structurally cannot optimize for (their incentive is generalization). The personal-ai-os substrate is what makes AYI tractable: continuity, provenance, and judgment integrity are prerequisites for an AI to be *yours* rather than *general*.
+
+---
+
 ## Lineage
 
 This thesis sits inside an emerging conversation:
