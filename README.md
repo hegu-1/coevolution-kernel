@@ -140,6 +140,26 @@ Speed unchanged. Transparency dramatically improved. Silent drift eliminated.
 
 ---
 
+## The delegation boundary
+
+The failure modes above share an assumption: the user is *present*. But a long-horizon personal kernel also has to survive the user being *absent* — and the logical endpoint of human-AI co-evolution is that some decisions must eventually route *through* the agent when the human can't make them in time.
+
+This is the most dangerous moment for judgment integrity. If the agent gradually absorbs authority — deciding a little more on its own each time the user leans on it — the boundary moves silently. The no-silent-drift principle has to extend to authority itself: **the day the agent decides for you must be authored, not drifted.**
+
+The **capability-token-protocol (CTP)** is the mechanism:
+
+- The secret that authorizes a boundary crossing (a passphrase, or a rotating challenge referent) **never enters any channel the agent can read** — not its memory, not its logs, not its repos, not the conversation. Asking the agent to "just store the passphrase" destroys it.
+- It lives behind an **air gap**, in the user's sovereign vault, next to a verifier the agent's reasoning layer cannot see.
+- When the user issues a boundary-crossing intent, the verifier checks the secret and mints a **scoped capability token** — `{ scope, action, expiry, nonce, log_ref }` — carrying no secret, only *what is authorized, how wide, how long, how to audit it*.
+- The agent receives only the token. Inside scope it acts; without a valid token, or out of scope, it **refuses and surfaces** rather than degrading into a plausible guess. Every exercise is logged against `log_ref`.
+- Two directions matter. An **authorization** token (user → agent: "you may cross here"), and a **challenge** (user → agent: a liveness/continuity proof that a substituted or drifted model would fail) — the user's tool to verify the *agent*, not only the agent verifying the user.
+
+The recursive guarantee: because the secret can only live where the agent cannot read, the agent is *structurally* unable to forge or leak it. "The agent waits until you hand it the key" stops being a promise and becomes a property of the architecture — verifiable by the fact that when the vault is physically detached, the air gap is real, not asserted.
+
+**Analog**: object-capability security applied to human→agent delegation — authority is an unforgeable, attenuable, revocable token, never an ambient permission.
+
+---
+
 ## Reference implementation
 
 A working prototype of the cognition-skill side of this kernel is at [`claude-cognition-skills`](https://github.com/hegu-1/claude-cognition-skills) — six Claude Code skills that operationalize the principles:
@@ -180,6 +200,7 @@ The following terms are deliberately surfaced here to establish prior art for th
 - **calibration-loop-protocol** — external feedback → tagged at source → schema delta → human ratifies → integrated with audit trail
 - **schema-coexistence-spec** — how core (stable judgment) and edge (evolving capability) schemas coexist
 - **continuity** — preserving cognitive thread across sessions, tools, and agents
+- **capability-token-protocol** — how a user authorizes the agent to cross a boundary (or eventually decide on their behalf) without the agent ever holding the secret: authorization is minted as a scoped, expiring, logged capability token on the far side of an air gap, so delegation is *authored, not drifted*
 
 ### Counterpoint to AGI
 
