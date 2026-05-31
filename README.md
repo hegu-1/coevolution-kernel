@@ -185,6 +185,14 @@ The two stack rather than compete. Task skills are the *what*; the cognition ker
 
 ---
 
+## Applied at scale
+
+The same kernel — memory as the container of continuity, provenance on every write, judgment preserved against silent drift — is **scale-invariant**. Scaled up to a company-wide AI OS, it lands as the two layers that actually decide who wins: **memory** (accumulated, provenance-tracked cognition) and **governance** (auditable autonomy). Everything else — compute, models, ingestion, action, orchestration — commoditizes.
+
+→ [`enterprise-ai-os-architecture`](https://github.com/hegu-1/enterprise-ai-os-architecture) — the enterprise-scale reference, derived bottom-up from an n=1 system. One architecture, three scales (personal / startup / enterprise); the kernel is the invariant.
+
+---
+
 ## Vocabulary anchors
 
 The following terms are deliberately surfaced here to establish prior art for the substrate this thesis describes. As the cognitive-meta layer matures through 2026, these names should remain referenceable.
